@@ -3,34 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vyqro | Future Systems Laboratory</title>
-  <meta name="description" content="Vyqro is a futuristic innovation lab building conceptual digital systems, prototype interfaces, and experimental future technologies." />
+  <title>Vyqro — Conceptual Identity System</title>
+  <meta name="description" content="Vyqro is not a product. It is a question — a visual philosophy of identity expressed through web structure, typography, and silence." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #070a12;
-      --bg-soft: #0c1020;
-      --panel: rgba(13, 18, 34, 0.66);
-      --panel-strong: rgba(10, 14, 28, 0.88);
-      --line: rgba(203, 213, 225, 0.14);
-      --text: #e8eef8;
-      --muted: #a5b1c7;
-      --silver: #cbd5e1;
-      --violet: #8b5cf6;
-      --violet-deep: #5b21b6;
-      --cyan: #22d3ee;
-      --magenta: #ec4899;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --radius-sm: 12px;
-      --max: 1180px;
+      --white: #FFFFFF;
+      --black: #0B0B0F;
+      --violet-gray: #6D6A75;
+      --ink-gray: #B5B2AC;
+      --accent: #C14444;
+      --max: 920px;
+      --wide: 1100px;
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
@@ -40,43 +31,26 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.22), transparent 24%),
-        radial-gradient(circle at 80% 15%, rgba(34, 211, 238, 0.18), transparent 22%),
-        radial-gradient(circle at 72% 76%, rgba(236, 72, 153, 0.14), transparent 20%),
-        linear-gradient(180deg, #05070d 0%, #070a12 52%, #060912 100%);
-      color: var(--text);
-      font-family: "Inter", sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-family: "Inter", system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(203, 213, 225, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(203, 213, 225, 0.045) 1px, transparent 1px);
-      background-size: 96px 96px;
-      mask-image: radial-gradient(circle at center, black 30%, transparent 82%);
-      pointer-events: none;
-      opacity: 0.32;
-      z-index: 0;
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-family: "Playfair Display", "Times New Roman", Times, serif;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: -20%;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(34, 211, 238, 0.08), transparent 22%),
-        radial-gradient(circle at 60% 50%, rgba(139, 92, 246, 0.1), transparent 24%),
-        radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.08), transparent 18%);
-      filter: blur(26px);
-      animation: drift 18s ease-in-out infinite alternate;
-      pointer-events: none;
-      z-index: 0;
+    p {
+      margin: 0;
     }
 
     a {
@@ -86,2839 +60,638 @@
 
     .page {
       position: relative;
-      z-index: 1;
     }
 
+    /* —— Fade-in system —— */
+    .reveal {
+      opacity: 0;
+      animation: fadeIn 2.4s ease forwards;
+    }
+
+    .reveal-d1 { animation-delay: 0.3s; }
+    .reveal-d2 { animation-delay: 0.6s; }
+    .reveal-d3 { animation-delay: 0.9s; }
+    .reveal-d4 { animation-delay: 1.2s; }
+    .reveal-d5 { animation-delay: 1.5s; }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* —— Layout shells —— */
     .shell {
-      width: min(var(--max), calc(100% - 40px));
+      width: min(var(--max), calc(100% - 48px));
       margin: 0 auto;
     }
 
-    .topbar {
-      position: sticky;
-      top: 16px;
-      z-index: 10;
-      margin-top: 16px;
-      margin-bottom: -88px;
-      pointer-events: none;
+    .shell-wide {
+      width: min(var(--wide), calc(100% - 48px));
+      margin: 0 auto;
     }
 
-    .topbar-inner {
-      pointer-events: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 14px 18px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(8, 12, 22, 0.56);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: "Space Grotesk", sans-serif;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      color: var(--silver);
-    }
-
-    .brand-mark {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: conic-gradient(from 210deg, var(--cyan), var(--violet), var(--magenta), var(--cyan));
-      box-shadow: 0 0 18px rgba(34, 211, 238, 0.7), 0 0 32px rgba(139, 92, 246, 0.32);
-    }
-
-    .top-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      justify-content: flex-end;
-      color: rgba(203, 213, 225, 0.82);
-      font-size: 0.92rem;
-    }
-
-    .top-links a {
-      position: relative;
-      padding-bottom: 3px;
-    }
-
-    .top-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 180ms ease;
-    }
-
-    .top-links a:hover::after {
-      transform: scaleX(1);
-    }
-
+    /* —— 1. Hero —— */
     .hero {
-      position: relative;
-      padding: 160px 0 96px;
       min-height: 100svh;
-      display: grid;
-      align-items: center;
-      overflow: clip;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 42px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      margin-bottom: 22px;
-      border: 1px solid rgba(203, 213, 225, 0.16);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--silver);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.76rem;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 18px var(--cyan);
-    }
-
-    h1, h2, h3 {
-      margin: 0;
-      font-family: "Space Grotesk", sans-serif;
-      letter-spacing: -0.05em;
-      line-height: 0.96;
-    }
-
-    h1 {
-      font-size: clamp(3.6rem, 9vw, 7.8rem);
-      max-width: 11ch;
-      text-wrap: balance;
-      text-shadow: 0 0 28px rgba(139, 92, 246, 0.14);
-    }
-
-    .hero-copy {
-      margin-top: 26px;
-      max-width: 62ch;
-      color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.8;
-    }
-
-    .hero-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 0 22px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      padding: 120px 0 100px;
+      text-align: center;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.96), rgba(34, 211, 238, 0.88));
-      color: white;
-      box-shadow: 0 18px 42px rgba(139, 92, 246, 0.28);
-    }
-
-    .btn-secondary {
-      border-color: rgba(203, 213, 225, 0.16);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-visual {
+    .hero-inner {
       position: relative;
-      min-height: 560px;
-      display: grid;
-      place-items: center;
+      padding-left: 3%;
     }
 
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(2px);
-      opacity: 0.82;
-      animation: float 10s ease-in-out infinite;
+    .hero-mark {
+      display: block;
+      font-family: "Inter", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--violet-gray);
+      margin-bottom: 48px;
     }
 
-    .orb.one {
-      width: 250px;
-      height: 250px;
-      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95), rgba(34, 211, 238, 0.52) 22%, rgba(139, 92, 246, 0.2) 52%, transparent 72%);
-      transform: translate(-120px, -110px);
-      animation-duration: 13s;
+    .hero h1 {
+      font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+      max-width: 14ch;
+      margin: 0 auto 0 8%;
+      text-align: left;
+      text-wrap: balance;
     }
 
-    .orb.two {
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.9), rgba(139, 92, 246, 0.22) 42%, transparent 72%);
-      transform: translate(100px, 120px);
-      animation-duration: 15s;
-      animation-delay: -5s;
+    .hero-sub {
+      margin-top: 42px;
+      margin-left: 22%;
+      max-width: 38ch;
+      text-align: left;
+      color: var(--violet-gray);
+      font-size: 1.05rem;
+      line-height: 1.85;
     }
 
-    .orb.three {
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle at 40% 40%, rgba(34, 211, 238, 0.92), rgba(34, 211, 238, 0.18) 55%, transparent 78%);
-      transform: translate(155px, -160px);
-      animation-duration: 11s;
-      animation-delay: -3s;
+    .hero-link {
+      display: inline-block;
+      margin-top: 64px;
+      margin-left: 22%;
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-gray);
+      border-bottom: 1px solid var(--ink-gray);
+      padding-bottom: 4px;
     }
 
-    .core-panel {
-      position: relative;
-      width: min(100%, 460px);
-      padding: 28px;
-      border-radius: 32px;
-      border: 1px solid rgba(203, 213, 225, 0.14);
-      background:
-        linear-gradient(180deg, rgba(14, 19, 36, 0.74), rgba(9, 12, 22, 0.9)),
-        radial-gradient(circle at top, rgba(34, 211, 238, 0.12), transparent 38%);
-      box-shadow: 0 32px 90px rgba(0, 0, 0, 0.46);
-      overflow: hidden;
-      backdrop-filter: blur(18px);
+    /* —— Section rhythm —— */
+    .section {
+      padding: 100px 0;
     }
 
-    .core-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 20%, rgba(34, 211, 238, 0.08), transparent 64%);
-      transform: translateX(-30%);
-      animation: shimmer 9s linear infinite;
+    .section-label {
+      font-family: "Inter", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-gray);
+      margin-bottom: 72px;
     }
 
-    .core-title {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: flex-start;
-      padding-bottom: 20px;
-      border-bottom: 1px solid rgba(203, 213, 225, 0.12);
+    /* —— 2. Fragments —— */
+    .fragments {
+      background: var(--white);
+    }
+
+    .fragment {
+      padding: 72px 0;
+      border-top: 1px solid rgba(181, 178, 172, 0.35);
+    }
+
+    .fragment:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .fragment-num {
+      font-family: "Inter", sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-gray);
+      margin-bottom: 28px;
+    }
+
+    .fragment h3 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
       margin-bottom: 20px;
     }
 
-    .core-title small,
-    .stat small,
-    .section-kicker,
-    .footer small {
-      color: rgba(203, 213, 225, 0.7);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.72rem;
+    .fragment p {
+      max-width: 42ch;
+      color: var(--violet-gray);
+      font-size: 1.02rem;
     }
 
-    .core-title h3 {
-      font-size: 1.5rem;
-      line-height: 1.05;
-      max-width: 9ch;
+    .fragment--offset {
+      padding-left: 18%;
     }
 
-    .signal {
-      width: 92px;
-      height: 92px;
-      border-radius: 24px;
-      border: 1px solid rgba(34, 211, 238, 0.18);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(34, 211, 238, 0.32), transparent 26%),
-        radial-gradient(circle at 70% 65%, rgba(236, 72, 153, 0.22), transparent 24%),
-        linear-gradient(145deg, rgba(139, 92, 246, 0.18), rgba(255, 255, 255, 0.02));
-      box-shadow: inset 0 0 24px rgba(34, 211, 238, 0.08), 0 0 36px rgba(139, 92, 246, 0.14);
-      display: grid;
-      place-items: center;
+    .fragment--far {
+      padding-left: 42%;
     }
 
-    .signal::before {
-      content: "";
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 1px solid rgba(203, 213, 225, 0.42);
-      box-shadow: 0 0 0 10px rgba(34, 211, 238, 0.06);
+    .fragment--center {
+      text-align: center;
     }
 
-    .core-list {
+    .fragment--center p {
+      margin: 0 auto;
+    }
+
+    .fragment--accent .fragment-num {
+      color: var(--accent);
+    }
+
+    /* —— 3. Text as Art —— */
+    .text-art {
+      background: var(--black);
+      color: var(--white);
+      padding: 140px 0 160px;
+      overflow: hidden;
+    }
+
+    .text-art-canvas {
       position: relative;
-      display: grid;
-      gap: 12px;
+      min-height: 480px;
+      width: min(var(--wide), calc(100% - 48px));
+      margin: 0 auto;
     }
 
-    .core-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      align-items: center;
-      padding: 15px 16px;
-      border: 1px solid rgba(203, 213, 225, 0.08);
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .core-row strong {
-      font-size: 0.98rem;
-      font-weight: 600;
-    }
-
-    .core-row span {
-      color: var(--muted);
-      font-size: 0.84rem;
-    }
-
-    .core-row em {
-      font-style: normal;
-      color: var(--cyan);
-      font-family: "Space Grotesk", sans-serif;
-      letter-spacing: 0.16em;
+    .word {
+      position: absolute;
+      font-family: "Playfair Display", "Times New Roman", serif;
       text-transform: uppercase;
-      font-size: 0.76rem;
+      white-space: nowrap;
+      user-select: none;
+      opacity: 0;
+      animation: wordReveal 3s ease forwards;
     }
 
-    .section {
-      padding: 90px 0;
+    .word--structure {
+      top: 8%;
+      left: 4%;
+      font-size: clamp(3.5rem, 11vw, 8.5rem);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      animation-delay: 0.2s;
     }
 
-    .section-head {
-      display: grid;
-      gap: 14px;
-      margin-bottom: 28px;
-      max-width: 800px;
+    .word--void {
+      top: 32%;
+      right: 8%;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.2em;
+      color: var(--ink-gray);
+      animation-delay: 0.8s;
     }
 
-    .section h2 {
-      font-size: clamp(2.1rem, 4vw, 3.8rem);
-      line-height: 1.02;
+    .word--signal {
+      bottom: 38%;
+      left: 18%;
+      font-size: clamp(2rem, 5.5vw, 4.2rem);
+      font-weight: 500;
+      letter-spacing: 0.45em;
+      color: rgba(255, 255, 255, 0.55);
+      animation-delay: 1.4s;
+    }
+
+    .word--meaning {
+      bottom: 10%;
+      right: 12%;
+      font-size: clamp(3rem, 9vw, 7rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      animation-delay: 2s;
+    }
+
+    .word--meaning span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    @keyframes wordReveal {
+      from {
+        opacity: 0;
+        letter-spacing: 0.6em;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .text-art-note {
+      margin-top: 80px;
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--violet-gray);
+    }
+
+    /* —— 4. Interpretations —— */
+    .interpretations {
+      padding: 120px 0;
+    }
+
+    .interpretation {
+      padding: 48px 0;
+      border-bottom: 1px solid rgba(181, 178, 172, 0.4);
+    }
+
+    .interpretation:first-child {
+      border-top: 1px solid rgba(181, 178, 172, 0.4);
+    }
+
+    .interpretation blockquote {
+      margin: 0;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: clamp(1.3rem, 3vw, 1.75rem);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--black);
+      max-width: 52ch;
+    }
+
+    .interpretation--b blockquote {
+      margin-left: 24%;
+    }
+
+    .interpretation--c blockquote {
+      margin-left: 8%;
+      color: var(--violet-gray);
+    }
+
+    /* —— 5. Concept Statement —— */
+    .concept-statement {
+      padding: 140px 0 120px;
+      background: var(--white);
+    }
+
+    .concept-statement h2 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      margin-bottom: 56px;
+      max-width: 16ch;
+    }
+
+    .concept-statement .prose {
+      max-width: 58ch;
+      color: var(--violet-gray);
+      font-size: 1.05rem;
+      line-height: 2;
+    }
+
+    .concept-statement .prose p + p {
+      margin-top: 28px;
+    }
+
+    /* —— 6. Void —— */
+    .void {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 160px 0;
+      background: var(--white);
+    }
+
+    .void-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--ink-gray);
+      opacity: 0;
+      animation: dotPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.7; }
+    }
+
+    .void-line {
+      width: 1px;
+      height: 80px;
+      background: rgba(181, 178, 172, 0.5);
+      margin-top: 48px;
+    }
+
+    /* —— 7. CTA —— */
+    .invitation {
+      padding: 120px 0 140px;
+      text-align: center;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .invitation h2 {
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      max-width: 18ch;
+      margin: 0 auto 48px;
       text-wrap: balance;
     }
 
-    .section p.lead {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 70ch;
-    }
-
-    .concept-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .glass-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(203, 213, 225, 0.14);
-      border-radius: var(--radius-lg);
-      background:
-        linear-gradient(180deg, rgba(17, 22, 40, 0.74), rgba(8, 11, 22, 0.94)),
-        radial-gradient(circle at top left, rgba(139, 92, 246, 0.16), transparent 38%);
-      padding: 22px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      min-height: 190px;
-      transition: transform 220ms ease, border-color 220ms ease;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(34, 211, 238, 0.26);
-    }
-
-    .glass-card::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      background: linear-gradient(135deg, transparent 0%, rgba(34, 211, 238, 0.12) 50%, transparent 100%);
-      opacity: 0.4;
-      pointer-events: none;
-    }
-
-    .tag {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 11px;
-      margin-bottom: 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--silver);
+    .invitation-link {
+      display: inline-block;
+      font-family: "Inter", sans-serif;
       font-size: 0.78rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
+      color: var(--ink-gray);
+      border-bottom: 1px solid rgba(181, 178, 172, 0.5);
+      padding-bottom: 5px;
     }
 
-    .tag::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--violet);
-      box-shadow: 0 0 12px var(--violet);
-    }
-
-    .glass-card h3 {
-      position: relative;
-      font-size: 1.25rem;
-      line-height: 1.08;
-      margin-bottom: 12px;
-    }
-
-    .glass-card p {
-      position: relative;
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 0.96rem;
-    }
-
-    .flow {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
-      gap: 12px;
-      align-items: stretch;
-    }
-
-    .flow-step,
-    .flow-arrow {
-      min-height: 150px;
-      display: grid;
-      place-items: center;
-    }
-
-    .flow-step {
-      padding: 24px 18px;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      text-align: center;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-    }
-
-    .flow-step strong {
-      display: block;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.08rem;
-      margin-top: 10px;
-    }
-
-    .flow-step span {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.6;
-      margin-top: 10px;
-      display: block;
-    }
-
-    .flow-step .num {
-      display: inline-grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(34, 211, 238, 0.72));
-      color: white;
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      box-shadow: 0 12px 24px rgba(34, 211, 238, 0.16);
-    }
-
-    .flow-arrow {
-      color: rgba(203, 213, 225, 0.5);
-      font-size: 1.6rem;
-      font-family: "Space Grotesk", sans-serif;
-    }
-
-    .lab-grid {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 18px;
-    }
-
-    .lab-panel {
-      padding: 24px;
-      min-height: 320px;
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(12, 16, 30, 0.8), rgba(7, 10, 18, 0.94)),
-        radial-gradient(circle at 20% 25%, rgba(34, 211, 238, 0.12), transparent 30%),
-        radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1), transparent 28%);
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .lab-panel::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.04) 50%, transparent 70%);
-      animation: sweep 10s linear infinite;
-      pointer-events: none;
-    }
-
-    .ui-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .ui-block {
-      min-height: 78px;
-      border-radius: 18px;
-      border: 1px solid rgba(203, 213, 225, 0.1);
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(12px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ui-block::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.12), transparent);
-      transform: translateY(-100%);
-      animation: pulse 8s ease-in-out infinite;
-    }
-
-    .ui-block.a { grid-column: span 7; min-height: 124px; }
-    .ui-block.b { grid-column: span 5; min-height: 124px; }
-    .ui-block.c { grid-column: span 4; }
-    .ui-block.d { grid-column: span 4; }
-    .ui-block.e { grid-column: span 4; }
-    .ui-block.f { grid-column: span 8; min-height: 110px; }
-    .ui-block.g { grid-column: span 4; min-height: 110px; }
-
-    .ui-scan {
-      position: absolute;
-      inset: 18px;
-      border: 1px solid rgba(34, 211, 238, 0.18);
-      border-radius: 20px;
-    }
-
-    .ui-scan::before,
-    .ui-scan::after {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 16px;
-      border: 1px dashed rgba(139, 92, 246, 0.16);
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .stat {
-      padding: 24px 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      background: linear-gradient(180deg, rgba(17, 22, 40, 0.76), rgba(8, 11, 20, 0.96));
-      box-shadow: var(--shadow);
-    }
-
-    .stat strong {
-      display: block;
-      margin: 10px 0 8px;
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      font-family: "Space Grotesk", sans-serif;
-      line-height: 1;
-      color: white;
-    }
-
-    .stat p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .philosophy {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .editorial {
-      padding: 32px;
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(14, 18, 32, 0.72), rgba(8, 10, 18, 0.95)),
-        radial-gradient(circle at top right, rgba(236, 72, 153, 0.09), transparent 32%);
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      box-shadow: var(--shadow);
-    }
-
-    .editorial p {
-      margin: 0 0 16px;
-      color: var(--muted);
-      line-height: 1.85;
-      font-size: 1rem;
-    }
-
-    .editorial p:last-child {
-      margin-bottom: 0;
-    }
-
-    .stacked-notes {
-      display: grid;
-      gap: 14px;
-    }
-
-    .note {
-      padding: 18px 20px;
-      border-radius: 20px;
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .note strong {
-      display: block;
-      font-family: "Space Grotesk", sans-serif;
-      margin-bottom: 8px;
-    }
-
-    .note span {
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.94rem;
-    }
-
-    .cta {
-      position: relative;
-      overflow: clip;
-      border-radius: 36px;
-      padding: 34px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.3), transparent 28%),
-        radial-gradient(circle at 80% 30%, rgba(34, 211, 238, 0.24), transparent 24%),
-        radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.16), transparent 24%),
-        linear-gradient(135deg, rgba(15, 19, 34, 0.96), rgba(7, 10, 18, 0.98));
-      border: 1px solid rgba(203, 213, 225, 0.14);
-      box-shadow: 0 34px 100px rgba(0, 0, 0, 0.48);
-    }
-
-    .cta::before,
-    .cta::after {
-      content: "";
-      position: absolute;
-      inset: auto;
-      border-radius: 50%;
-      filter: blur(2px);
-      opacity: 0.9;
-      animation: float 12s ease-in-out infinite;
-    }
-
-    .cta::before {
-      width: 220px;
-      height: 220px;
-      top: -60px;
-      right: -40px;
-      background: radial-gradient(circle, rgba(34, 211, 238, 0.24), transparent 62%);
-    }
-
-    .cta::after {
-      width: 150px;
-      height: 150px;
-      bottom: -34px;
-      left: 10%;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.22), transparent 62%);
-      animation-delay: -5s;
-    }
-
-    .cta-inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 20px;
-      justify-items: start;
-      max-width: 760px;
-    }
-
-    .cta h2 {
-      font-size: clamp(2.4rem, 5vw, 4.8rem);
-      max-width: 10ch;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.88fr 1.12fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .contact-panel,
-    .form-panel {
-      border-radius: 28px;
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      background: linear-gradient(180deg, rgba(15, 20, 36, 0.7), rgba(8, 11, 20, 0.94));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .contact-panel {
-      padding: 28px;
-    }
-
-    .contact-lines {
-      display: grid;
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    .contact-line {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(203, 213, 225, 0.1);
-      color: var(--muted);
-    }
-
-    .contact-line strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    form {
-      padding: 28px;
-      display: grid;
-      gap: 16px;
-    }
-
-    label {
-      display: grid;
-      gap: 10px;
-      color: var(--silver);
-      font-size: 0.92rem;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      border-radius: 16px;
-      padding: 15px 16px;
-      font: inherit;
-      outline: none;
-      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: rgba(34, 211, 238, 0.42);
-      box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.08);
-    }
-
-    textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
-
+    /* —— 8. Footer —— */
     .footer {
-      padding: 40px 0 58px;
-      color: rgba(203, 213, 225, 0.72);
+      padding: 72px 0 88px;
+      border-top: 1px solid rgba(181, 178, 172, 0.35);
     }
 
     .footer-inner {
       display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 18px;
-      border-top: 1px solid rgba(203, 213, 225, 0.1);
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
+    .footer-name {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
     }
 
-    .footer-links a:hover {
-      color: white;
+    .footer-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--violet-gray);
     }
 
-    .floating-shape {
-      position: absolute;
-      border: 1px solid rgba(203, 213, 225, 0.1);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
-      backdrop-filter: blur(12px);
-      box-shadow: inset 0 0 28px rgba(255, 255, 255, 0.03);
-      animation: float 14s ease-in-out infinite;
-      pointer-events: none;
+    .footer-contact {
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: var(--ink-gray);
+      letter-spacing: 0.04em;
     }
 
-    .shape-a {
-      width: 140px;
-      height: 140px;
-      top: 16%;
-      left: 3%;
-      border-radius: 34% 66% 58% 42% / 42% 39% 61% 58%;
-      animation-delay: -4s;
+    .footer-contact a {
+      border-bottom: 1px solid rgba(181, 178, 172, 0.4);
     }
 
-    .shape-b {
-      width: 88px;
-      height: 88px;
-      top: 58%;
-      right: 4%;
-      border-radius: 50% 50% 44% 56% / 49% 47% 53% 51%;
-      animation-delay: -7s;
-    }
-
-    .shape-c {
-      width: 62px;
-      height: 62px;
-      bottom: 10%;
-      left: 42%;
-      transform: rotate(18deg);
-      animation-delay: -2s;
-    }
-
-    @keyframes float {
-      0% { transform: translate3d(0, 0, 0) rotate(0deg); }
-      50% { transform: translate3d(0, -14px, 0) rotate(6deg); }
-      100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-    }
-
-    @keyframes drift {
-      0% { transform: translate3d(-2%, -1%, 0) scale(1); }
-      100% { transform: translate3d(2%, 1%, 0) scale(1.08); }
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-36%); opacity: 0.25; }
-      50% { opacity: 0.55; }
-      100% { transform: translateX(34%); opacity: 0.22; }
-    }
-
-    @keyframes pulse {
-      0% { transform: translateY(-110%); opacity: 0; }
-      20% { opacity: 0.4; }
-      50% { opacity: 0.68; }
-      100% { transform: translateY(110%); opacity: 0; }
-    }
-
-    @keyframes sweep {
-      0% { transform: translateX(-70%); }
-      100% { transform: translateX(70%); }
-    }
-
-    @media (max-width: 1040px) {
-      .hero-grid,
-      .lab-grid,
-      .philosophy,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .concept-grid,
-      .metrics-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .flow {
-        grid-template-columns: 1fr;
-      }
-
-      .flow-arrow {
-        min-height: 34px;
+    /* —— Responsive —— */
+    @media (max-width: 768px) {
+      .shell,
+      .shell-wide {
+        width: calc(100% - 32px);
       }
 
       .hero {
-        padding-top: 132px;
-      }
-
-      .hero-visual {
-        min-height: 480px;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .shell {
-        width: min(var(--max), calc(100% - 24px));
-      }
-
-      .topbar-inner {
-        border-radius: 24px;
-        padding: 14px;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .top-links {
-        justify-content: flex-start;
-        gap: 12px 16px;
-      }
-
-      .hero {
-        padding-top: 118px;
+        padding: 100px 0 80px;
         min-height: auto;
       }
 
-      h1 {
-        max-width: 9ch;
+      .hero-inner {
+        padding-left: 0;
+      }
+
+      .hero h1 {
+        margin-left: 0;
+        max-width: none;
+        font-size: clamp(2rem, 8vw, 3rem);
+      }
+
+      .hero-sub,
+      .hero-link {
+        margin-left: 0;
       }
 
       .section {
-        padding: 64px 0;
+        padding: 72px 0;
       }
 
-      .concept-grid,
-      .metrics-grid {
-        grid-template-columns: 1fr;
+      .fragment--offset,
+      .fragment--far {
+        padding-left: 0;
       }
 
-      .glass-card,
-      .stat,
-      .editorial,
-      .contact-panel,
-      form,
-      .lab-panel,
-      .cta {
-        border-radius: 22px;
+      .text-art {
+        padding: 100px 0 120px;
       }
 
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
+      .text-art-canvas {
+        min-height: 360px;
       }
 
-      .btn {
-        width: 100%;
+      .word--structure {
+        left: 0;
+        font-size: clamp(2.5rem, 14vw, 4rem);
       }
 
-      .core-panel {
-        padding: 20px;
-        border-radius: 24px;
+      .word--void {
+        right: 0;
+        top: 28%;
+        font-size: clamp(2rem, 10vw, 3.2rem);
       }
 
-      .core-title {
-        flex-direction: column;
+      .word--signal {
+        left: 0;
+        bottom: 42%;
+        font-size: clamp(1.4rem, 7vw, 2.2rem);
+        letter-spacing: 0.3em;
       }
 
-      .ui-grid {
-        gap: 10px;
+      .word--meaning {
+        right: 0;
+        font-size: clamp(2.2rem, 12vw, 3.5rem);
       }
 
-      .ui-block.a,
-      .ui-block.b,
-      .ui-block.c,
-      .ui-block.d,
-      .ui-block.e,
-      .ui-block.f,
-      .ui-block.g {
-        grid-column: span 12;
+      .interpretation--b blockquote,
+      .interpretation--c blockquote {
+        margin-left: 0;
       }
 
-      .floating-shape {
-        opacity: 0.6;
+      .void {
+        min-height: 50vh;
+        padding: 120px 0;
+      }
+
+      .invitation {
+        padding: 100px 0 120px;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+      }
+
+      .reveal,
+      .word {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header class="topbar">
-      <div class="shell topbar-inner">
-        <div class="brand"><span class="brand-mark"></span> Vyqro / Site</div>
-        <nav class="top-links" aria-label="Primary">
-          <a href="#concepts">Concepts</a>
-          <a href="#flow">Flow</a>
-          <a href="#lab">Lab</a>
-          <a href="#contact">Contact</a>
-        </nav>
+
+    <!-- 1. Hero -->
+    <header class="hero">
+      <div class="shell hero-inner">
+        <span class="hero-mark reveal">Vyqro / Conceptual Fragment Language</span>
+        <h1 class="reveal reveal-d1">Vyqro is Not a Product. It is a Question.</h1>
+        <p class="hero-sub reveal reveal-d2">
+          Identity is a structure, not a label. Meaning exists in fragments — assembled not by function, but by perception.
+        </p>
+        <a class="hero-link reveal reveal-d3" href="#fragments">Descend</a>
       </div>
     </header>
 
     <main>
-      <section class="hero" aria-label="Vyqro introduction">
-        <span class="floating-shape shape-a"></span>
-        <span class="floating-shape shape-b"></span>
-        <span class="floating-shape shape-c"></span>
-        <div class="shell hero-grid">
-          <div>
-            <div class="eyebrow">Quantum Experimental Interface System</div>
-            <h1>Building Systems That Don’t Exist Yet</h1>
-            <p class="hero-copy">
-              Vyqro is a conceptual innovation lab shaping experimental digital systems, prototype interfaces,
-              and future-facing technologies. We design abstract intelligent platforms that feel like the next
-              evolution of the internet before it arrives.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Enter Lab</a>
-              <a class="btn btn-secondary" href="#concepts">Explore Concepts</a>
-            </div>
-          </div>
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="orb one"></div>
-            <div class="orb two"></div>
-            <div class="orb three"></div>
-            <div class="core-panel">
-              <div class="core-title">
-                <div>
-                  <small>Reality Distortion Entry</small>
-                  <h3>Prototype the unseen.</h3>
-                </div>
-                <div class="signal"></div>
-              </div>
-              <div class="core-list">
-                <div class="core-row">
-                  <div>
-                    <strong>Holographic interface shell</strong>
-                    <span>Ambient layers for conceptual systems</span>
-                  </div>
-                  <em>Active</em>
-                </div>
-                <div class="core-row">
-                  <div>
-                    <strong>Experimental logic map</strong>
-                    <span>Idea scaffolds for future product states</span>
-                  </div>
-                  <em>Synced</em>
-                </div>
-                <div class="core-row">
-                  <div>
-                    <strong>Emergent system preview</strong>
-                    <span>Design language tuned for unknown tech</span>
-                  </div>
-                  <em>Live</em>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="concepts">
+      <!-- 2. Fragments -->
+      <section class="section fragments" id="fragments" aria-label="Concept fragments">
         <div class="shell">
-          <div class="section-head">
-            <div class="section-kicker">Experimental Concepts</div>
-            <h2>Idea modules for future systems, synthetic interfaces, and digital environments.</h2>
-            <p class="lead">
-              Vyqro treats every concept as a prototype fragment. Each module is a possible direction for a
-              new interface language, an intelligent product layer, or a digital world designed to feel
-              unfamiliar, precise, and alive.
-            </p>
-          </div>
-          <div class="concept-grid">
-            <article class="glass-card">
-              <div class="tag">01 / Neural</div>
-              <h3>Neural Interface Prototypes</h3>
-              <p>Adaptive surfaces that translate intent into structured digital motion and context-aware action.</p>
-            </article>
-            <article class="glass-card">
-              <div class="tag">02 / Quantum</div>
-              <h3>Quantum UI Systems</h3>
-              <p>Layered interface behavior with unexpected depth, signal-rich composition, and experimental clarity.</p>
-            </article>
-            <article class="glass-card">
-              <div class="tag">03 / Adaptive</div>
-              <h3>Adaptive Digital Environments</h3>
-              <p>Responsive worlds that reconfigure around use, revealing a calmer path through complexity.</p>
-            </article>
-            <article class="glass-card">
-              <div class="tag">04 / Future</div>
-              <h3>Future Interaction Models</h3>
-              <p>Conceptual interactions that feel intuitive without being familiar, designed for emerging platforms.</p>
-            </article>
-            <article class="glass-card">
-              <div class="tag">05 / Synthetic</div>
-              <h3>Synthetic Intelligence Designs</h3>
-              <p>High-end visual systems that express machine intelligence through refined, human-centered composition.</p>
-            </article>
-            <article class="glass-card">
-              <div class="tag">06 / Data</div>
-              <h3>Abstract Data Ecosystems</h3>
-              <p>Interconnected information structures presented as atmospheric, navigable systems rather than charts.</p>
-            </article>
-          </div>
+          <p class="section-label reveal">Fragments</p>
+
+          <article class="fragment fragment--offset reveal">
+            <p class="fragment-num">Fragment I</p>
+            <h3>Identity</h3>
+            <p>What you are cannot be named in a single word. Identity disperses across context, memory, and the spaces between definitions.</p>
+          </article>
+
+          <article class="fragment fragment--far reveal">
+            <p class="fragment-num">Fragment II</p>
+            <h3>Perception</h3>
+            <p>Every surface is an interpretation. You do not see Vyqro — you construct it from what remains unspoken.</p>
+          </article>
+
+          <article class="fragment fragment--offset reveal">
+            <p class="fragment-num">Fragment III</p>
+            <h3>Structure</h3>
+            <p>Design is thought made visible. The grid beneath the silence holds more meaning than any interface ever could.</p>
+          </article>
+
+          <article class="fragment fragment--center reveal">
+            <p class="fragment-num">Fragment IV</p>
+            <h3>Silence</h3>
+            <p>Absence is not emptiness. It is the frame that gives form to everything else.</p>
+          </article>
+
+          <article class="fragment fragment--far fragment--accent reveal">
+            <p class="fragment-num">Fragment V</p>
+            <h3>Meaning</h3>
+            <p>Nothing here instructs. Everything here invites. Meaning arrives only when you stop looking for purpose.</p>
+          </article>
         </div>
       </section>
 
-      <section class="section" id="flow">
+      <!-- 3. Text as Art -->
+      <section class="text-art" aria-label="Typography as visual composition">
+        <div class="text-art-canvas" aria-hidden="true">
+          <span class="word word--structure">Structure</span>
+          <span class="word word--void">Void</span>
+          <span class="word word--signal">Signal</span>
+          <span class="word word--meaning">Mea<span>ning</span></span>
+        </div>
+        <p class="text-art-note reveal">Text as visual object</p>
+      </section>
+
+      <!-- 4. Interpretations -->
+      <section class="section interpretations" aria-label="User interpretations">
         <div class="shell">
-          <div class="section-head">
-            <div class="section-kicker">Idea to System Flow</div>
-            <h2>From abstract thought to deployable future structure.</h2>
-            <p class="lead">
-              The Vyqro process converts a vague concept into a coherent, testable system by moving through
-              simulation, prototyping, and design logic until a future-ready direction becomes visible.
-            </p>
-          </div>
-          <div class="flow" role="list" aria-label="Innovation flow">
-            <div class="flow-step" role="listitem">
-              <span class="num">1</span>
-              <strong>Abstract Idea</strong>
-              <span>Begin with a signal, a question, or an unusual possibility.</span>
-            </div>
-            <div class="flow-arrow" aria-hidden="true">→</div>
-            <div class="flow-step" role="listitem">
-              <span class="num">2</span>
-              <strong>Digital Simulation</strong>
-              <span>Model how the idea behaves inside a visual and functional frame.</span>
-            </div>
-            <div class="flow-arrow" aria-hidden="true">→</div>
-            <div class="flow-step" role="listitem">
-              <span class="num">3</span>
-              <strong>Prototype Model</strong>
-              <span>Shape the experience into something concrete enough to explore.</span>
-            </div>
-            <div class="flow-arrow" aria-hidden="true">→</div>
-            <div class="flow-step" role="listitem">
-              <span class="num">4</span>
-              <strong>System Design</strong>
-              <span>Refine structure, hierarchy, interaction, and visual language.</span>
-            </div>
-            <div class="flow-arrow" aria-hidden="true">→</div>
-            <div class="flow-step" role="listitem">
-              <span class="num">5</span>
-              <strong>Future Deployment</strong>
-              <span>Release a conceptual platform ready for the next phase of evolution.</span>
-            </div>
-          </div>
+          <p class="section-label reveal">Interpretations</p>
+
+          <figure class="interpretation reveal">
+            <blockquote>“I don't know what it does, but I feel it.”</blockquote>
+          </figure>
+
+          <figure class="interpretation interpretation--b reveal">
+            <blockquote>“It feels like a system without instructions.”</blockquote>
+          </figure>
+
+          <figure class="interpretation interpretation--c reveal">
+            <blockquote>“It's more like thinking than browsing.”</blockquote>
+          </figure>
         </div>
       </section>
 
-      <section class="section" id="lab">
+      <!-- 5. Concept Statement -->
+      <section class="section concept-statement" aria-labelledby="concept-title">
         <div class="shell">
-          <div class="section-head">
-            <div class="section-kicker">Lab Visualization</div>
-            <h2>Holographic panels, abstract grids, and layered interface previews.</h2>
-            <p class="lead">
-              The lab aesthetic uses depth, transparency, and motion to make the interface feel like a live
-              experimental environment rather than a static website.
-            </p>
-          </div>
-          <div class="lab-grid">
-            <div class="lab-panel">
-              <div class="eyebrow" style="margin-bottom: 8px;">Interface Fragment A</div>
-              <h3 style="font-size: 1.7rem; max-width: 10ch;">Experimental signal field</h3>
-              <div class="ui-grid">
-                <div class="ui-block a"></div>
-                <div class="ui-block b"></div>
-                <div class="ui-block c"></div>
-                <div class="ui-block d"></div>
-                <div class="ui-block e"></div>
-                <div class="ui-block f"></div>
-                <div class="ui-block g"></div>
-              </div>
-            </div>
-            <div class="lab-panel">
-              <div class="eyebrow" style="margin-bottom: 8px;">Interface Fragment B</div>
-              <h3 style="font-size: 1.7rem; max-width: 12ch;">Holographic data environment</h3>
-              <p class="lead" style="margin-top: 14px; max-width: 56ch;">
-                Floating geometry, scan lines, and glass layers create a visual language that suggests the
-                presence of deeper intelligence beneath the surface.
-              </p>
-              <div class="ui-scan" aria-hidden="true"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="metrics">
-        <div class="shell">
-          <div class="section-head">
-            <div class="section-kicker">Innovation Metrics</div>
-            <h2>Signals that suggest scale, depth, and possibility.</h2>
-          </div>
-          <div class="metrics-grid">
-            <article class="stat">
-              <small>Systems</small>
-              <strong>120+</strong>
-              <p>Experimental systems shaped across concept, design, and prototype layers.</p>
-            </article>
-            <article class="stat">
-              <small>Interfaces</small>
-              <strong>45+</strong>
-              <p>Prototype interfaces crafted to explore new interaction languages.</p>
-            </article>
-            <article class="stat">
-              <small>Simulations</small>
-              <strong>99</strong>
-              <p>Concept simulations used to validate behavior, clarity, and mood.</p>
-            </article>
-            <article class="stat">
-              <small>Potential</small>
-              <strong>∞</strong>
-              <p>Future directions that expand as the platform and imagination evolve.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="philosophy">
-        <div class="shell philosophy">
-          <div class="editorial">
-            <div class="section-kicker">Philosophy</div>
-            <h2 style="margin-bottom: 18px;">Future of interfaces. Digital evolution. Human + machine fusion.</h2>
+          <h2 id="concept-title" class="reveal">Design Without Definition</h2>
+          <div class="prose reveal reveal-d1">
             <p>
-              Vyqro exists at the edge between product design, speculative systems, and creative technology.
-              The brand imagines interfaces that do more than display information; they interpret intent,
-              reveal structure, and create a feeling of entering a new digital universe.
+              Vyqro exists in the space between identity and abstraction — a conceptual system that refuses the logic of products, services, and utility. It is not built to solve. It is built to question.
             </p>
             <p>
-              Every visual decision is tuned to feel mysterious, premium, and experimental. The goal is not to
-              imitate current software, but to suggest what a next-generation internet layer could look and feel like.
+              In a digital landscape obsessed with function, Vyqro offers something rarer: a structure for thought. Each fragment, each silence, each asymmetrical placement is a deliberate act of philosophical design — an invitation to interpret rather than consume.
             </p>
             <p>
-              This is a design language for unknown technology: calm in structure, intense in atmosphere, and
-              precise in detail.
+              This is identity expressed as architecture. Not what Vyqro does, but what Vyqro means when meaning itself is the only output.
             </p>
-          </div>
-          <div class="stacked-notes">
-            <div class="note">
-              <strong>Interface logic</strong>
-              <span>Clear structure wrapped in atmospheric depth and conceptual motion.</span>
-            </div>
-            <div class="note">
-              <strong>Brand signal</strong>
-              <span>A distinctive presence that feels like a laboratory for emerging digital futures.</span>
-            </div>
-            <div class="note">
-              <strong>Emotional target</strong>
-              <span>Mystery, precision, futurism, and the sense that something bigger is forming underneath.</span>
-            </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="shell cta">
-          <div class="cta-inner">
-            <div class="section-kicker">Call to Action</div>
-            <h2>Enter the Future Sandbox</h2>
-            <p class="lead" style="max-width: 62ch; color: rgba(232, 238, 248, 0.8);">
-              Start exploring the experimental layer of Vyqro or bring in a concept that needs to be turned
-              into a futuristic system, prototype interface, or abstract digital experience.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Start Exploring</a>
-              <a class="btn btn-secondary" href="#contact">Request Collaboration</a>
-            </div>
-          </div>
-        </div>
+      <!-- 6. Void -->
+      <section class="void" aria-label="Silence in design">
+        <span class="void-dot" aria-hidden="true"></span>
+        <span class="void-line" aria-hidden="true"></span>
       </section>
 
-      <section class="section" id="contact">
+      <!-- 7. Invitation -->
+      <section class="invitation" aria-labelledby="invite-title">
         <div class="shell">
-          <div class="section-head">
-            <div class="section-kicker">Contact</div>
-            <h2>Minimal contact, maximum signal.</h2>
-            <p class="lead">
-              Use the form to describe the concept, interface, or system direction you want to explore. The
-              visual language stays experimental even at the point of contact.
-            </p>
-          </div>
-          <div class="contact-grid">
-            <div class="contact-panel">
-              <div class="eyebrow">Vyqro Laboratory</div>
-              <h3 style="font-size: 1.8rem; line-height: 1.05; max-width: 12ch;">Designed for speculative collaboration.</h3>
-              <div class="contact-lines">
-                <div class="contact-line"><strong>Domain</strong><span>vyqro.site</span></div>
-                <div class="contact-line"><strong>Focus</strong><span>Future systems and conceptual interfaces</span></div>
-                <div class="contact-line"><strong>Mode</strong><span>Experimental digital innovation</span></div>
-              </div>
-            </div>
-            <div class="form-panel">
-              <form>
-                <label>
-                  Name
-                  <input type="text" name="name" placeholder="Your name" />
-                </label>
-                <label>
-                  Concept Interest
-                  <input type="text" name="interest" placeholder="Interface, system, prototype, or platform" />
-                </label>
-                <label>
-                  Message
-                  <textarea name="message" placeholder="Describe the future you want to prototype."></textarea>
-                </label>
-                <button class="btn btn-primary" type="submit">Transmit Concept</button>
-              </form>
-            </div>
-          </div>
+          <h2 id="invite-title" class="reveal">Interpret Vyqro in Your Own Way</h2>
+          <a class="invitation-link reveal reveal-d1" href="#footer">Continue</a>
         </div>
       </section>
+
     </main>
 
-    <footer class="footer">
+    <!-- 8. Footer -->
+    <footer class="footer" id="footer">
       <div class="shell footer-inner">
-        <div>
-          <small>Vyqro System v0.9 / Experimental Lab Footer</small>
-          <div style="margin-top: 8px; color: rgba(203, 213, 225, 0.88);">Living experimental digital universe for future interface prototypes.</div>
-        </div>
-        <div class="footer-links">
-          <a href="#concepts">Concepts</a>
-          <a href="#flow">Flow</a>
-          <a href="#lab">Lab</a>
-          <a href="#contact">Contact</a>
-        </div>
+        <p class="footer-name">Vyqro</p>
+        <p class="footer-tag">Conceptual Identity System</p>
+        <p class="footer-contact">
+          <a href="mailto:contact@vyqro.site">contact@vyqro.site</a>
+        </p>
       </div>
     </footer>
-  </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Vyqro is a futuristic innovation lab building experimental digital systems and conceptual interfaces for the next evolution of the internet." />
-  <title>Vyqro | Experimental Digital Innovation Lab</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #070a12;
-      --bg-alt: #0c1120;
-      --panel: rgba(12, 18, 34, 0.62);
-      --panel-strong: rgba(14, 19, 36, 0.82);
-      --line: rgba(203, 213, 225, 0.14);
-      --text: #edf2ff;
-      --muted: rgba(203, 213, 225, 0.72);
-      --violet: #8b5cf6;
-      --cyan: #22d3ee;
-      --magenta: #ec4899;
-      --silver: #cbd5e1;
-      --glow: 0 0 40px rgba(34, 211, 238, 0.18), 0 0 90px rgba(139, 92, 246, 0.12);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-      --max: 1200px;
-    }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Inter", system-ui, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.18), transparent 28%),
-        radial-gradient(circle at 85% 20%, rgba(34, 211, 238, 0.16), transparent 24%),
-        radial-gradient(circle at 70% 80%, rgba(236, 72, 153, 0.12), transparent 26%),
-        linear-gradient(180deg, #04060c 0%, #070a12 34%, #04060c 100%);
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(203, 213, 225, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(203, 213, 225, 0.05) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(circle at center, black 30%, transparent 92%);
-      opacity: 0.22;
-      z-index: 0;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: -20%;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.09), transparent 28%),
-        radial-gradient(circle at 70% 20%, rgba(139, 92, 246, 0.1), transparent 26%),
-        radial-gradient(circle at 50% 75%, rgba(236, 72, 153, 0.09), transparent 25%);
-      filter: blur(40px);
-      animation: drift 22s ease-in-out infinite alternate;
-      z-index: 0;
-    }
-
-    @keyframes drift {
-      0% { transform: translate3d(-1.5%, -1%, 0) scale(1); }
-      100% { transform: translate3d(1.5%, 1%, 0) scale(1.06); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-16px) rotate(3deg); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.62; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.02); }
-    }
-
-    @keyframes flicker {
-      0%, 18%, 22%, 53%, 57%, 100% { opacity: 1; }
-      20%, 55% { opacity: 0.72; }
-    }
-
-    @keyframes sweep {
-      0% { transform: translateX(-120%); }
-      100% { transform: translateX(120%); }
-    }
-
-    .page {
-      position: relative;
-      z-index: 1;
-    }
-
-    .shell {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(20px);
-      background: linear-gradient(180deg, rgba(7, 10, 18, 0.84), rgba(7, 10, 18, 0.52));
-      border-bottom: 1px solid rgba(203, 213, 225, 0.08);
-    }
-
-    .topbar-inner {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background:
-        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 18%),
-        linear-gradient(135deg, rgba(139, 92, 246, 0.95), rgba(34, 211, 238, 0.8));
-      box-shadow: var(--glow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border-radius: 11px;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-    }
-
-    .brand-mark::after {
-      inset: 14px;
-      border-color: rgba(255, 255, 255, 0.16);
-    }
-
-    .brand-name {
-      display: grid;
-      gap: 2px;
-      line-height: 1;
-    }
-
-    .brand-name strong {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.05rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-    }
-
-    .brand-name span {
-      font-size: 0.78rem;
-      color: var(--muted);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .topnav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 12px;
-    }
-
-    .topnav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.84rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 10px 12px;
-      border-radius: 999px;
-      transition: 180ms ease;
-    }
-
-    .topnav a:hover {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    section {
-      position: relative;
-    }
-
-    .hero {
-      min-height: calc(100vh - 76px);
-      display: grid;
-      align-items: center;
-      padding: 72px 0 64px;
-    }
-
-    .hero-grid {
-      display: grid;
-      gap: 38px;
-      align-items: center;
-      grid-template-columns: 1.15fr 0.85fr;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border: 1px solid rgba(203, 213, 225, 0.14);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--silver);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      width: fit-content;
-      box-shadow: var(--glow);
-    }
-
-    .eyebrow i {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, var(--cyan), var(--violet));
-      box-shadow: 0 0 18px rgba(34, 211, 238, 0.85);
-      display: inline-block;
-    }
-
-    .hero h1 {
-      margin: 22px 0 18px;
-      max-width: 11ch;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(3.5rem, 8vw, 7.5rem);
-      line-height: 0.92;
-      letter-spacing: -0.06em;
-      text-wrap: balance;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(90deg, #ffffff 0%, #d9dfff 34%, #8b5cf6 68%, #22d3ee 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: flicker 8s infinite;
-    }
-
-    .hero-copy {
-      max-width: 62ch;
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--muted);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 32px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 52px;
-      padding: 0 20px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
-    }
-
-    .button.primary {
-      color: #08111d;
-      background: linear-gradient(135deg, #f8fbff 0%, #dbeafe 100%);
-      box-shadow: 0 18px 40px rgba(255, 255, 255, 0.08), 0 0 30px rgba(34, 211, 238, 0.18);
-    }
-
-    .button.secondary {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(203, 213, 225, 0.14);
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--glow);
-    }
-
-    .hero-aside {
-      position: relative;
-      min-height: 560px;
-      border-radius: 40px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(34, 211, 238, 0.18), transparent 22%),
-        radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.2), transparent 24%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-      border: 1px solid rgba(203, 213, 225, 0.14);
-      overflow: hidden;
-      box-shadow: var(--shadow), var(--glow);
-    }
-
-    .hero-aside::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-      background-size: 44px 44px;
-      opacity: 0.12;
-    }
-
-    .hero-aside::after {
-      content: "";
-      position: absolute;
-      top: -10%;
-      left: -30%;
-      width: 46%;
-      height: 130%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
-      transform: rotate(18deg);
-      animation: sweep 7.8s linear infinite;
-      opacity: 0.55;
-    }
-
-    .orb,
-    .orb-2,
-    .orb-3 {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(2px);
-      animation: float 10s ease-in-out infinite;
-    }
-
-    .orb {
-      width: 170px;
-      height: 170px;
-      top: 10%;
-      left: 8%;
-      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95), rgba(34, 211, 238, 0.3) 18%, rgba(34, 211, 238, 0.05) 50%, transparent 72%);
-    }
-
-    .orb-2 {
-      width: 230px;
-      height: 230px;
-      right: -2%;
-      top: 22%;
-      background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.8), rgba(139, 92, 246, 0.32) 20%, rgba(139, 92, 246, 0.08) 50%, transparent 72%);
-      animation-delay: -2s;
-    }
-
-    .orb-3 {
-      width: 140px;
-      height: 140px;
-      bottom: 10%;
-      left: 22%;
-      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.78), rgba(236, 72, 153, 0.3) 22%, rgba(236, 72, 153, 0.07) 52%, transparent 75%);
-      animation-delay: -5s;
-    }
-
-    .panel {
-      position: absolute;
-      backdrop-filter: blur(18px);
-      background: var(--panel);
-      border: 1px solid rgba(203, 213, 225, 0.16);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .panel-1 {
-      top: 22px;
-      right: 22px;
-      width: min(78%, 300px);
-      padding: 18px;
-    }
-
-    .panel-2 {
-      left: 24px;
-      bottom: 28px;
-      width: min(84%, 345px);
-      padding: 18px;
-    }
-
-    .panel-label {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: center;
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .signal {
-      display: grid;
-      gap: 10px;
-    }
-
-    .signal-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.9rem;
-      color: var(--silver);
-    }
-
-    .signal-bar {
-      grid-column: 1 / -1;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .signal-bar::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      width: 68%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, rgba(139, 92, 246, 0.95), rgba(34, 211, 238, 0.95), rgba(236, 72, 153, 0.9));
-      box-shadow: 0 0 24px rgba(34, 211, 238, 0.36);
-      animation: pulse 5s ease-in-out infinite;
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .mini-cell {
-      aspect-ratio: 1;
-      border-radius: 18px;
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mini-cell::after {
-      content: "";
-      position: absolute;
-      inset: 16%;
-      border-radius: 14px;
-      background: radial-gradient(circle, rgba(34, 211, 238, 0.85), rgba(34, 211, 238, 0) 68%);
-      opacity: 0.26;
-    }
-
-    .section {
-      padding: 28px 0 8px;
-    }
-
-    .section-header {
-      display: grid;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-
-    .section-kicker {
-      color: var(--cyan);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-    }
-
-    .section h2 {
-      margin: 0;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(2rem, 4vw, 3.55rem);
-      letter-spacing: -0.05em;
-      line-height: 1;
-    }
-
-    .section-intro {
-      max-width: 70ch;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 1rem;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .concept-card,
-    .metric-card,
-    .flow-card,
-    .philosophy-card,
-    .contact-card,
-    .lab-panel {
-      background: var(--panel);
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      border-radius: var(--radius-lg);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
-    }
-
-    .concept-card {
-      min-height: 168px;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: transform 180ms ease, border-color 180ms ease;
-    }
-
-    .concept-card::before {
-      content: "";
-      position: absolute;
-      inset: auto -30% -60% auto;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(34, 211, 238, 0.28), transparent 68%);
-      filter: blur(2px);
-    }
-
-    .concept-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(34, 211, 238, 0.34);
-    }
-
-    .concept-card strong {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.18rem;
-      letter-spacing: -0.03em;
-    }
-
-    .concept-card span {
-      margin-top: 12px;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 24ch;
-    }
-
-    .concept-tag {
-      display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      color: var(--silver);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .concept-tag::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, var(--cyan), var(--magenta));
-      box-shadow: 0 0 16px rgba(34, 211, 238, 0.55);
-    }
-
-    .flow-wrap {
-      display: grid;
-      grid-template-columns: 1.02fr 0.98fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .flow-card {
-      padding: 24px;
-    }
-
-    .steps {
-      display: grid;
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 14px;
-      align-items: start;
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(203, 213, 225, 0.08);
-    }
-
-    .step-index {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(34, 211, 238, 0.26));
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text);
-    }
-
-    .step strong {
-      display: block;
-      margin-bottom: 6px;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.02rem;
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .node-board {
-      position: relative;
-      min-height: 100%;
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .node-board .frame {
-      height: 100%;
-      padding: 26px;
-      position: relative;
-      isolation: isolate;
-    }
-
-    .node-board .frame::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity: 0.16;
-      z-index: -2;
-    }
-
-    .node-board .frame::after {
-      content: "";
-      position: absolute;
-      inset: auto 10% 10% 10%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.9), rgba(139, 92, 246, 0.95), transparent);
-      filter: blur(0.5px);
-      box-shadow: 0 0 24px rgba(34, 211, 238, 0.45);
-    }
-
-    .node-cloud {
-      position: relative;
-      min-height: 390px;
-    }
-
-    .node {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 34px;
-      border: 1px solid rgba(203, 213, 225, 0.14);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-      backdrop-filter: blur(16px);
-      box-shadow: var(--shadow);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 14px;
-      animation: float 11s ease-in-out infinite;
-    }
-
-    .node small {
-      display: block;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 0.68rem;
-      margin-bottom: 8px;
-    }
-
-    .node strong {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1rem;
-      line-height: 1.05;
-    }
-
-    .node.one {
-      top: 12%;
-      left: 5%;
-    }
-
-    .node.two {
-      top: 8%;
-      right: 12%;
-      animation-delay: -2s;
-    }
-
-    .node.three {
-      top: 42%;
-      left: 28%;
-      animation-delay: -4s;
-    }
-
-    .node.four {
-      right: 8%;
-      bottom: 12%;
-      animation-delay: -6s;
-    }
-
-    .node.five {
-      left: 14%;
-      bottom: 8%;
-      animation-delay: -8s;
-    }
-
-    .link-line {
-      position: absolute;
-      background: linear-gradient(90deg, rgba(34, 211, 238, 0), rgba(34, 211, 238, 0.65), rgba(139, 92, 246, 0.65), rgba(34, 211, 238, 0));
-      filter: blur(0.2px);
-      opacity: 0.75;
-    }
-
-    .link-one {
-      top: 29%;
-      left: 16%;
-      width: 52%;
-      height: 1px;
-      transform: rotate(11deg);
-    }
-
-    .link-two {
-      bottom: 24%;
-      left: 18%;
-      width: 56%;
-      height: 1px;
-      transform: rotate(-14deg);
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .metric-card {
-      padding: 22px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .metric-card::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.85), rgba(139, 92, 246, 0.85), transparent);
-      opacity: 0.65;
-    }
-
-    .metric-card strong {
-      display: block;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1;
-      letter-spacing: -0.05em;
-      margin-bottom: 10px;
-    }
-
-    .metric-card span {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .philosophy-wrap {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .philosophy-card {
-      padding: 26px;
-    }
-
-    .philosophy-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.85;
-      font-size: 1rem;
-    }
-
-    .philosophy-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .philosophy-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(203, 213, 225, 0.08);
-    }
-
-    .philosophy-item i {
-      width: 12px;
-      height: 12px;
-      margin-top: 6px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, var(--cyan), var(--magenta));
-      box-shadow: 0 0 18px rgba(34, 211, 238, 0.45);
-      flex: 0 0 auto;
-    }
-
-    .philosophy-item div {
-      color: var(--silver);
-      line-height: 1.7;
-    }
-
-    .cta {
-      padding: 18px 0 10px;
-    }
-
-    .cta-panel {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(28px, 6vw, 54px);
-      border-radius: 38px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.22), transparent 22%),
-        radial-gradient(circle at 80% 25%, rgba(139, 92, 246, 0.24), transparent 26%),
-        radial-gradient(circle at 50% 110%, rgba(236, 72, 153, 0.16), transparent 36%),
-        linear-gradient(135deg, rgba(13, 18, 35, 0.92), rgba(7, 10, 18, 0.74));
-      border: 1px solid rgba(203, 213, 225, 0.14);
-      box-shadow: var(--shadow), var(--glow);
-    }
-
-    .cta-panel::before,
-    .cta-panel::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .cta-panel::before {
-      width: 320px;
-      height: 320px;
-      border: 1px solid rgba(34, 211, 238, 0.18);
-      top: -120px;
-      right: -80px;
-      animation: float 12s ease-in-out infinite;
-    }
-
-    .cta-panel::after {
-      width: 220px;
-      height: 220px;
-      border: 1px solid rgba(236, 72, 153, 0.18);
-      bottom: -90px;
-      left: -60px;
-      animation: float 14s ease-in-out infinite reverse;
-    }
-
-    .cta-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .cta h2 {
-      font-size: clamp(2.6rem, 5vw, 5.2rem);
-      margin-bottom: 16px;
-      max-width: 11ch;
-    }
-
-    .cta p {
-      margin: 0;
-      max-width: 60ch;
-      color: var(--muted);
-      line-height: 1.85;
-      font-size: 1rem;
-    }
-
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: flex-end;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.82fr 1.18fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .contact-card {
-      padding: 24px;
-    }
-
-    .contact-card h3 {
-      margin: 0 0 10px;
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.42rem;
-      letter-spacing: -0.04em;
-    }
-
-    .contact-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    form {
-      display: grid;
-      gap: 14px;
-    }
-
-    label {
-      display: grid;
-      gap: 8px;
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--silver);
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      border: 1px solid rgba(203, 213, 225, 0.12);
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      padding: 16px 16px;
-      font: inherit;
-      outline: none;
-      transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: rgba(203, 213, 225, 0.42);
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: rgba(34, 211, 238, 0.5);
-      box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.08);
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-
-    .footer {
-      padding: 30px 0 42px;
-      color: rgba(203, 213, 225, 0.7);
-    }
-
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(203, 213, 225, 0.1);
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .footer-links a {
-      color: inherit;
-      text-decoration: none;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: 180ms ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-      border-color: rgba(203, 213, 225, 0.14);
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .system-text {
-      font-family: "Space Grotesk", sans-serif;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.76rem;
-      color: rgba(203, 213, 225, 0.58);
-    }
-
-    .hidden-anchor {
-      position: absolute;
-      inset: auto auto 0 0;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid,
-      .flow-wrap,
-      .philosophy-wrap,
-      .contact-grid,
-      .cta-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 52px;
-      }
-
-      .hero-aside {
-        min-height: 480px;
-      }
-
-      .metrics-grid,
-      .card-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .cta-actions {
-        justify-content: flex-start;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .shell,
-      .topbar-inner {
-        width: min(calc(100% - 20px), var(--max));
-      }
-
-      .topbar-inner {
-        min-height: 70px;
-        padding: 8px 0;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .topnav {
-        justify-content: flex-start;
-      }
-
-      .hero {
-        padding: 34px 0 34px;
-      }
-
-      .hero h1 {
-        max-width: 10ch;
-      }
-
-      .hero-copy,
-      .section-intro,
-      .cta p,
-      .philosophy-card p,
-      .contact-card p {
-        font-size: 0.98rem;
-      }
-
-      .metrics-grid,
-      .card-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .panel-1,
-      .panel-2 {
-        width: min(88%, 290px);
-      }
-
-      .mini-grid {
-        gap: 8px;
-      }
-
-      .node {
-        width: 102px;
-        height: 102px;
-        border-radius: 28px;
-      }
-
-      .node.one {
-        left: 2%;
-      }
-
-      .node.two {
-        right: 2%;
-      }
-
-      .node.three {
-        left: 22%;
-      }
-
-      .node.four {
-        right: 3%;
-      }
-
-      .node.five {
-        left: 6%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <a class="brand" href="#top" aria-label="Vyqro home">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span class="brand-name">
-            <strong>Vyqro</strong>
-            <span>vyqro.site</span>
-          </span>
-        </a>
-        <nav class="topnav" aria-label="Primary">
-          <a href="#concepts">Concepts</a>
-          <a href="#flow">Flow</a>
-          <a href="#lab">Lab</a>
-          <a href="#philosophy">Philosophy</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="top">
-      <section class="hero shell" aria-labelledby="hero-title">
-        <div class="hero-grid">
-          <div>
-            <div class="eyebrow"><i></i> Experimental digital innovation lab</div>
-            <h1 id="hero-title"><span>Building Systems That Don’t Exist Yet</span></h1>
-            <p class="hero-copy">
-              Vyqro is a conceptual innovation space for future systems, emerging interfaces, and synthetic digital environments.
-              We turn abstract ideas into experimental prototypes that feel like glimpses of the next internet.
-            </p>
-            <div class="hero-actions">
-              <a class="button primary" href="#contact">Enter Lab</a>
-              <a class="button secondary" href="#concepts">Explore Concepts</a>
-            </div>
-          </div>
-
-          <div class="hero-aside" aria-label="Futuristic interface illustration">
-            <div class="orb" aria-hidden="true"></div>
-            <div class="orb-2" aria-hidden="true"></div>
-            <div class="orb-3" aria-hidden="true"></div>
-
-            <div class="panel panel-1">
-              <div class="panel-label">
-                <span>Reality distortion entry</span>
-                <span>signal / 99.8%</span>
-              </div>
-              <div class="signal">
-                <div class="signal-row">
-                  <span>Holographic layer</span>
-                  <span>active</span>
-                </div>
-                <div class="signal-bar"></div>
-                <div class="signal-row">
-                  <span>Interface synthesis</span>
-                  <span>live</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="panel panel-2">
-              <div class="panel-label">
-                <span>Prototype field</span>
-                <span>v0.9</span>
-              </div>
-              <div class="mini-grid" aria-hidden="true">
-                <span class="mini-cell"></span>
-                <span class="mini-cell"></span>
-                <span class="mini-cell"></span>
-                <span class="mini-cell"></span>
-                <span class="mini-cell"></span>
-                <span class="mini-cell"></span>
-                <span class="mini-cell"></span>
-                <span class="mini-cell"></span>
-                <span class="mini-cell"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="concepts" class="section shell" aria-labelledby="concepts-title">
-        <div class="section-header">
-          <div class="section-kicker">Experimental Concepts</div>
-          <h2 id="concepts-title">Idea modules from the edge of digital reality</h2>
-          <p class="section-intro">A collection of abstract system directions, interface experiments, and speculative platforms designed to feel more like future infrastructure than a conventional product stack.</p>
-        </div>
-        <div class="card-grid">
-          <article class="concept-card">
-            <div class="concept-tag">Module 01</div>
-            <strong>Neural Interface Prototypes</strong>
-            <span>Human-centered surfaces with intelligent feedback loops and invisible system logic.</span>
-          </article>
-          <article class="concept-card">
-            <div class="concept-tag">Module 02</div>
-            <strong>Quantum UI Systems</strong>
-            <span>Layered visual states that behave like observation-driven interface structures.</span>
-          </article>
-          <article class="concept-card">
-            <div class="concept-tag">Module 03</div>
-            <strong>Adaptive Digital Environments</strong>
-            <span>Responsive worlds that shift tone, scale, and geometry according to context.</span>
-          </article>
-          <article class="concept-card">
-            <div class="concept-tag">Module 04</div>
-            <strong>Future Interaction Models</strong>
-            <span>New gestures, new rituals, and new ways to enter high-complexity systems.</span>
-          </article>
-          <article class="concept-card">
-            <div class="concept-tag">Module 05</div>
-            <strong>Synthetic Intelligence Designs</strong>
-            <span>Design language shaped around machine-aware intuition and minimal friction.</span>
-          </article>
-          <article class="concept-card">
-            <div class="concept-tag">Module 06</div>
-            <strong>Abstract Data Ecosystems</strong>
-            <span>Visual data territories where information feels alive, spatial, and reactive.</span>
-          </article>
-        </div>
-      </section>
-
-      <section id="flow" class="section shell" aria-labelledby="flow-title">
-        <div class="section-header">
-          <div class="section-kicker">Idea to System Flow</div>
-          <h2 id="flow-title">From abstract thought to future deployment</h2>
-          <p class="section-intro">Vyqro transforms conceptual thinking into structured, testable experience systems through a quiet progression of simulation, prototyping, and design synthesis.</p>
-        </div>
-        <div class="flow-wrap">
-          <div class="flow-card">
-            <div class="steps">
-              <div class="step">
-                <div class="step-index">01</div>
-                <div>
-                  <strong>Abstract Idea</strong>
-                  <p>A raw signal of opportunity, unshaped and ready to be mapped into a system language.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-index">02</div>
-                <div>
-                  <strong>Digital Simulation</strong>
-                  <p>Conceptual modeling to test atmosphere, flow, and behavior before any hard build.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-index">03</div>
-                <div>
-                  <strong>Prototype Model</strong>
-                  <p>A minimal but expressive interface structure that reveals the system’s shape.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-index">04</div>
-                <div>
-                  <strong>System Design</strong>
-                  <p>Refinement of interactions, layer hierarchy, and long-term scalability across contexts.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step-index">05</div>
-                <div>
-                  <strong>Future Deployment</strong>
-                  <p>A launch-ready expression that feels less like a page and more like a portal.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="flow-card node-board">
-            <div class="frame">
-              <div class="panel-label">
-                <span>Node topology</span>
-                <span>sync / autonomous</span>
-              </div>
-              <div class="node-cloud" aria-hidden="true">
-                <span class="link-line link-one"></span>
-                <span class="link-line link-two"></span>
-                <div class="node one"><div><small>Seed</small><strong>Idea</strong></div></div>
-                <div class="node two"><div><small>Sim</small><strong>Model</strong></div></div>
-                <div class="node three"><div><small>Proto</small><strong>Frame</strong></div></div>
-                <div class="node four"><div><small>Deploy</small><strong>Field</strong></div></div>
-                <div class="node five"><div><small>Refine</small><strong>Loop</strong></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="lab" class="section shell" aria-labelledby="lab-title">
-        <div class="section-header">
-          <div class="section-kicker">Lab Visualization</div>
-          <h2 id="lab-title">A holographic environment for emerging systems</h2>
-          <p class="section-intro">The lab surface behaves like a research chamber: transparent layers, ambient grids, and glowing interface fragments arranged to imply active experimentation.</p>
-        </div>
-        <div class="card-grid">
-          <article class="lab-panel concept-card">
-            <div class="concept-tag">Panel A</div>
-            <strong>Holographic UI Panels</strong>
-            <span>Layered surfaces that suggest live system states, status readings, and hidden depth.</span>
-          </article>
-          <article class="lab-panel concept-card">
-            <div class="concept-tag">Panel B</div>
-            <strong>Abstract Data Grids</strong>
-            <span>Spatial structures that make information feel architectural and atmospheric.</span>
-          </article>
-          <article class="lab-panel concept-card">
-            <div class="concept-tag">Panel C</div>
-            <strong>Floating Geometry</strong>
-            <span>Curved forms and luminous shapes that keep the interface in motion without noise.</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="section shell" aria-labelledby="metrics-title">
-        <div class="section-header">
-          <div class="section-kicker">Innovation Metrics</div>
-          <h2 id="metrics-title">Measured in prototypes, not presentations</h2>
-          <p class="section-intro">Vyqro’s scale is expressed as a living inventory of systems, concept simulations, and interface explorations.</p>
-        </div>
-        <div class="metrics-grid">
-          <article class="metric-card">
-            <strong>120+</strong>
-            <span>Experimental systems shaped for future-facing product directions.</span>
-          </article>
-          <article class="metric-card">
-            <strong>45+</strong>
-            <span>Prototype interfaces designed for concept validation and visual testing.</span>
-          </article>
-          <article class="metric-card">
-            <strong>99</strong>
-            <span>Concept simulations mapping possibilities across digital environments.</span>
-          </article>
-          <article class="metric-card">
-            <strong>∞</strong>
-            <span>Design possibilities hidden inside the lab’s evolving framework.</span>
-          </article>
-        </div>
-      </section>
-
-      <section id="philosophy" class="section shell" aria-labelledby="philosophy-title">
-        <div class="section-header">
-          <div class="section-kicker">Philosophy</div>
-          <h2 id="philosophy-title">Future interfaces should feel intelligent, mysterious, and alive</h2>
-        </div>
-        <div class="philosophy-wrap">
-          <div class="philosophy-card">
-            <p>
-              Vyqro exists at the intersection of human intuition and machine precision. We design with an editorial eye, but we think in systems, flows, and long-range digital evolution.
-            </p>
-          </div>
-          <div class="philosophy-card">
-            <div class="philosophy-list">
-              <div class="philosophy-item">
-                <i></i>
-                <div>Future of interfaces as immersive, conceptual layers rather than fixed screens.</div>
-              </div>
-              <div class="philosophy-item">
-                <i></i>
-                <div>Digital evolution guided by minimal structure, experimental visuals, and clarity.</div>
-              </div>
-              <div class="philosophy-item">
-                <i></i>
-                <div>Human + machine design fusion that keeps the system elegant and emotionally legible.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section shell cta" aria-labelledby="cta-title">
-        <div class="cta-panel">
-          <div class="cta-grid">
-            <div>
-              <div class="section-kicker">Call to Action</div>
-              <h2 id="cta-title">Enter the Future Sandbox</h2>
-              <p>Explore conceptual systems with Vyqro, or bring an abstract idea into a sharper digital form. This is a place for the next prototype, not the last one.</p>
-            </div>
-            <div class="cta-actions">
-              <a class="button primary" href="#contact">Start Exploring</a>
-              <a class="button secondary" href="#contact">Request Collaboration</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="section shell" aria-labelledby="contact-title">
-        <div class="section-header">
-          <div class="section-kicker">Contact</div>
-          <h2 id="contact-title">Send a concept into the lab</h2>
-          <p class="section-intro">A minimal entry point for collaborations, prototypes, and experimental brand directions.</p>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-card">
-            <h3>Vyqro Systems</h3>
-            <p>Experimental digital innovation for future brands, abstract products, and evolving interfaces.</p>
-            <div style="height: 18px"></div>
-            <p><span class="system-text">System version 0.9.6</span></p>
-          </div>
-          <div class="contact-card">
-            <form>
-              <label>
-                Name
-                <input type="text" name="name" placeholder="Your name" />
-              </label>
-              <label>
-                Concept Interest
-                <input type="text" name="interest" placeholder="Future UI, prototype, brand system..." />
-              </label>
-              <label>
-                Message
-                <textarea name="message" placeholder="Describe the concept, system, or future interface you want to explore."></textarea>
-              </label>
-              <a class="button primary" href="mailto:hello@vyqro.site">Transmit Concept</a>
-            </form>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer shell">
-      <div class="footer-inner">
-        <div class="footer-links" aria-label="Footer links">
-          <a href="#concepts">Concepts</a>
-          <a href="#lab">Lab</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="system-text">Vyqro / Future Lab Interface / Build 001</div>
-      </div>
-    </footer>
   </div>
 </body>
 </html>
